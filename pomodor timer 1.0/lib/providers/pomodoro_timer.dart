@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pomodoro_timer/providers/pomodoro_timer_button.dart';
 
 enum PomodoroFocusState { focus, rest }
 
@@ -45,6 +46,11 @@ class PomodoroTimerNotifier extends StateNotifier<int> {
 
   void resetTimer() {
     state = 1500;
+
+    if (timer != null && timer!.isActive) {
+      timer!.cancel();
+      ref.read(pomodoroTimerButtonProvider.notifier).changeTimerButtonState();
+    }
   }
 
   bool get isActive {
