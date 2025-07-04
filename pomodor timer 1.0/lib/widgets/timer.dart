@@ -48,6 +48,30 @@ class _TimerWidgetState extends ConsumerState<TimerWidget>
           ),
 
           Positioned(
+            top: 110,
+            left: 110,
+            child: Card(
+              color: Colors.transparent,
+
+              elevation: 15,
+              child: Text(
+                ref
+                    .watch(pomodoroTimerProvider.notifier)
+                    .pomodoroFocusState
+                    .name
+                    .toUpperCase(),
+                style: TextStyle(
+                  color: ref.watch(pomodoroTimerProvider.notifier).isActive
+                      ? Colors.blue[900]
+                      : Colors.yellow,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+
+          Positioned(
             top: 95,
             left: 218,
 
@@ -60,7 +84,7 @@ class _TimerWidgetState extends ConsumerState<TimerWidget>
           ),
 
           Positioned(
-            top: 130,
+            top: 150,
             left: 55,
             right: 0,
             bottom: 0,
