@@ -41,10 +41,22 @@ class _TimerWidgetState extends ConsumerState<TimerWidget>
           AnimatedBuilder(
             animation: _pomodoroTimerAnimationController,
             builder: (context, child) => SizedBox(
-              height: 310 - _pomodoroTimerAnimationController.value,
+              height: 320 - _pomodoroTimerAnimationController.value,
               child: child,
             ),
             child: Image.asset("assets/images/tomato.png"),
+          ),
+
+          Positioned(
+            top: 95,
+            left: 218,
+
+            child: IconButton(
+              onPressed: () {
+                ref.read(pomodoroTimerProvider.notifier).resetTimer();
+              },
+              icon: Icon(Icons.square_rounded),
+            ),
           ),
 
           Positioned(
@@ -58,7 +70,7 @@ class _TimerWidgetState extends ConsumerState<TimerWidget>
               style: TextStyle(
                 fontSize: 70,
                 color: ref.watch(pomodoroTimerProvider.notifier).isActive
-                    ? const Color.fromARGB(255, 80, 71, 255)
+                    ? Colors.blue[900]
                     : Colors.yellow,
               ),
             ),
@@ -94,7 +106,8 @@ class _TimerWidgetState extends ConsumerState<TimerWidget>
                 ref.watch(pomodoroTimerButtonProvider)
                     ? Icons.pause
                     : Icons.play_arrow,
-                size: 60,
+                size: 70,
+                color: Colors.grey[700],
               ),
             ),
           ),
