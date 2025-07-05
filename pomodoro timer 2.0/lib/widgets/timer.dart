@@ -43,15 +43,23 @@ class _TimerWidgetState extends ConsumerState<TimerWidget>
       lowerBound: 0,
       upperBound: 5,
     );
+  }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _restWheelController = WheelPickerController(
       itemCount: kTimerMinuteList.length,
-      initialIndex: 0,
+      initialIndex: kTimerMinuteList.indexOf(
+        ref.watch(pomodoroTimerProvider.notifier).restSeconds ~/ 60,
+      ),
     );
 
     _focusWheelController = WheelPickerController(
       itemCount: kTimerMinuteList.length,
-      initialIndex: 0,
+      initialIndex: kTimerMinuteList.indexOf(
+        ref.watch(pomodoroTimerProvider.notifier).focusSeconds ~/ 60,
+      ),
     );
   }
 
