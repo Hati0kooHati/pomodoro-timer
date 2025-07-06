@@ -15,8 +15,6 @@ class PomodoroInfoScreen extends ConsumerWidget {
       focusSecondsAddition +=
           ref.read(pomodoroTimerProvider.notifier).focusSeconds -
           ref.read(pomodoroTimerProvider);
-
-      print(focusSecondsAddition);
     } else {
       restSecondsAddition +=
           ref.read(pomodoroTimerProvider.notifier).restSeconds -
@@ -48,14 +46,31 @@ class PomodoroInfoScreen extends ConsumerWidget {
               left: 125,
               child: Column(
                 children: [
-                  Text(
-                    "${((ref.read(pomodoroInfoProvider)[PomodoroFocusState.focus]! + focusSecondsAddition) ~/ 60).toString().padLeft(2, "0")} : ${((ref.read(pomodoroInfoProvider)[PomodoroFocusState.focus]! + focusSecondsAddition) % 60).toString().padLeft(2, "0")}",
-                    style: TextStyle(color: Colors.blue[900], fontSize: 50),
+                  Column(
+                    children: [
+                      Text(
+                        "${((ref.read(pomodoroInfoProvider)[PomodoroFocusState.focus]! + focusSecondsAddition) ~/ 60).toString().padLeft(2, "0")} : ${((ref.read(pomodoroInfoProvider)[PomodoroFocusState.focus]! + focusSecondsAddition) % 60).toString().padLeft(2, "0")}",
+                        style: TextStyle(color: Colors.blue[900], fontSize: 50),
+                      ),
+
+                      Text(
+                        "total focus",
+                        style: TextStyle(color: Colors.blue[900], fontSize: 20),
+                      ),
+                    ],
                   ),
 
-                  Text(
-                    "${((ref.read(pomodoroInfoProvider)[PomodoroFocusState.rest]! + restSecondsAddition) ~/ 60).toString().padLeft(2, "0")} : ${((ref.read(pomodoroInfoProvider)[PomodoroFocusState.rest]! + restSecondsAddition) % 60).toString().padLeft(2, "0")}",
-                    style: TextStyle(color: Colors.yellow, fontSize: 50),
+                  Column(
+                    children: [
+                      Text(
+                        "${((ref.read(pomodoroInfoProvider)[PomodoroFocusState.rest]! + restSecondsAddition) ~/ 60).toString().padLeft(2, "0")} : ${((ref.read(pomodoroInfoProvider)[PomodoroFocusState.rest]! + restSecondsAddition) % 60).toString().padLeft(2, "0")}",
+                        style: TextStyle(color: Colors.yellow, fontSize: 50),
+                      ),
+                      Text(
+                        "total break",
+                        style: TextStyle(color: Colors.yellow, fontSize: 20),
+                      ),
+                    ],
                   ),
                 ],
               ),
